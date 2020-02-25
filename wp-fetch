@@ -1,0 +1,36 @@
+fetch('http://graphql.local/graphql', {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+	body: JSON.stringify({
+		query: `
+			{
+				testcptuis {
+					edges {
+						node {
+							id
+							title
+						}
+					}
+				}
+			}
+		`,
+	}),
+	})
+	.then(response => response.json())
+	.then(res => {
+		//=console.log(res.data.testcptuis.edges);
+		let html = ``;
+		res.data.testcptuis.edges.forEach(el => {
+			//console.log(el.node.id);
+			html += `
+			<article>
+			<h2>
+				${el.node.title}
+			</h2>
+			</article>
+		`;
+		});
+		document.body.insertAdjacentHTML("beforeend", html);
+	});
