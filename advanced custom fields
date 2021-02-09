@@ -1,0 +1,47 @@
+// Get Field value in CPT_2 linked via a relationship field in CPT_1 single.
+
+function get_field_in_CPT_2(){
+	//Name of the relationship field in CPT_1
+    $relationship_fields = get_field('relationship_fields');
+
+    //Loop through
+	foreach( $relationship_fields as $relationship_field){
+		$CPT_2_Field = get_field('CPT_2_Field', $relationship_field->ID);
+		return $CPT_2_Field;
+	}
+}
+add_shortcode('get_field_in_CPT_2', 'get_field_in_CPT_2');
+
+
+// Get repeater Field value in CPT_2 linked via a relationship field in CPT_1 single.
+function repeater_field_values(){
+
+	//Name of the relationship field in CPT_1
+	$relationship_fields = get_field('relationship_fields');
+
+
+	//Loop through
+	foreach( $relationship_fields as $relationship_field){
+		
+		//Loop in repeater
+		if( have_rows('my_repeater_field', $relationship_field->ID) ):
+
+			// Loop through rows.
+			while( have_rows('my_repeater_field', $relationship_field->ID) ) : the_row();
+		
+				// Load sub field value.
+				$sub_value = get_sub_field('repeated_field');
+				echo $sub_value;
+				// Do something...
+		
+			// End loop.
+			endwhile;
+		
+		// No value.
+		else :
+			// Do something...
+		endif;
+		
+	}
+}
+add_shortcode('repeater_field_values', 'repeater_field_values');
