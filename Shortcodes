@@ -1,4 +1,4 @@
-Loop with custom taxonomy as param ->
+Loop with custom taxonomy as param -> based on
 https://wordpress.stackexchange.com/questions/232873/create-a-shortcode-to-display-custom-post-types-with-a-specific-taxonomy
 
 /**
@@ -62,3 +62,37 @@ function loop_with_tax( $atts ) {
 }
 
 USAGE [lwct my_taxonomy="something"]
+
+
+**************************************
+dead simple loop
+
+    function dead_simple_loop() {
+        ob_start(); ?>
+
+        <div class="row">
+        <?php
+            $args = array( 'post_type' => 'MY_CUSTOM_POST_TYPE', 'posts_per_page' => 6 );
+            $loop = new WP_Query( $args );
+            while ( $loop->have_posts() ) : $loop->the_post();
+        ?>
+
+        <div class="col-sm-4">
+            <a class="content" href="<?php echo get_permalink( $post->ID ); ?>">
+                <div class="image">
+                    <?php the_post_thumbnail(); ?>
+                </div>
+                <div class="text">
+                    <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                </div>
+            </a>
+        </div>
+
+        <?php endwhile; ?>
+        </div>
+    <?php
+    
+        return ob_get_clean();
+    }
+
+    add_shortcode('dsl', 'dead_simple_loop');
