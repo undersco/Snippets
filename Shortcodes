@@ -11,14 +11,8 @@ function register_shortcodes() {
 }
 add_action( 'init', 'register_shortcodes' );
 
-/**
- * Produtos Shortcode Callback
- * 
- * @param Array $atts
- *
- * @return string
- */
 function loop_with_tax( $atts ) {
+    ob_start();
     global $wp_query,
         $post;
 
@@ -57,7 +51,7 @@ function loop_with_tax( $atts ) {
         </div>
         <?php
     }
-
+    return ob_get_clean();
     wp_reset_postdata();
 }
 
