@@ -1,7 +1,7 @@
 // Get Field value in CPT_2 linked via a relationship field in CPT_1 single.
 
 function get_field_in_CPT_2(){
-	//Name of the relationship field in CPT_1
+    //Name of the relationship field in CPT_1
     $relationship_fields = get_field('relationship_fields');
 
     //Loop through
