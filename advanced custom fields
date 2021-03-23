@@ -45,3 +45,32 @@ function repeater_field_values(){
 	}
 }
 add_shortcode('repeater_field_values', 'repeater_field_values');
+
+// Formatage des champs nombres
+add_filter('acf/format_value/name=prix', 'fix_number', 20, 3);
+add_filter('acf/format_value/name=prix_minimum', 'fix_number', 20, 3);
+add_filter('acf/format_value/name=prix_maximum', 'fix_number', 20, 3);
+add_filter('acf/format_value/name=prix_depart', 'fix_number', 20, 3);
+
+function fix_number($value, $post_id, $field) {
+  $value = number_format($value, 0, ',', ' ');
+  return $value;
+}
+
+
+//Récupérer l'image d'une taxo
+function image_from_taxonomy(){
+	ob_start();
+	$terms = get_the_terms( get_the_ID(), 'domaine');
+	
+	if( !empty($terms) ) {
+		$term = array_pop($terms);
+		$custom_field = get_field('image_de_la_taxonomie', $term );
+	?>
+		<img src="<?php echo $custom_field; ?>" />
+	<?php
+	}
+	return ob_get_clean();
+
+}
+add_shortcode('image_from_taxonomy','image_from_taxonomy');
