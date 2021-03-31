@@ -1,0 +1,19 @@
+//Sort by acf field Date
+
+add_action( 'elementor/query/sort_by_acf_date', function( $query ) {
+	
+$today = date("j F, Y"); //needs to be the same output as the acf field
+	
+$query->set( 'meta_query', array(
+		'relation' => 'AND',
+		'day_clause' => array(
+			'key' => 'name_of_my_acf_field',
+			'value' => $today,
+			'compare' => '>=',
+			'type' => 'numeric'
+		),
+	));
+    $query->set( 'orderby', array('day_clause' => 'DESC'));	
+
+
+});
