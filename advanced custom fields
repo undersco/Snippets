@@ -61,7 +61,7 @@ function fix_number($value, $post_id, $field) {
 //Récupérer l'image d'une taxo
 function image_from_taxonomy(){
 	ob_start();
-	$terms = get_the_terms( get_the_ID(), 'domaine');
+	$terms = get_the_terms( get_the_ID(), 'tax_slug');
 	
 	if( !empty($terms) ) {
 		$term = array_pop($terms);
@@ -74,3 +74,20 @@ function image_from_taxonomy(){
 
 }
 add_shortcode('image_from_taxonomy','image_from_taxonomy');
+
+
+//Récupérer la couleur de la taxo
+
+function color_from_taxonomy(){
+	ob_start();
+	$terms = get_the_terms( get_the_ID(), 'tax_slug');
+	
+	if( !empty($terms) ) {
+		$term = array_pop($terms);
+		$custom_field = get_field('main_color_recettes_produits', $term );
+		echo $custom_field; 
+	}
+	return ob_get_clean();
+
+}
+add_shortcode('color_from_taxonomy','color_from_taxonomy');
