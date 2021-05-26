@@ -77,7 +77,6 @@ add_shortcode('image_from_taxonomy','image_from_taxonomy');
 
 
 //Récupérer la couleur de la taxo
-
 function color_from_taxonomy(){
 	ob_start();
 	$terms = get_the_terms( get_the_ID(), 'tax_slug');
@@ -91,3 +90,26 @@ function color_from_taxonomy(){
 
 }
 add_shortcode('color_from_taxonomy','color_from_taxonomy');
+
+//Add inline style based on a custom taxonomy name with an acf color picker 
+function retrieveTaxAndColor(){
+
+	$terms = get_terms( array(
+		'taxonomy' => 'tax_name',
+		'hide_empty' => false,
+	) );
+
+	echo '<style>';
+	foreach ($terms as $term) {
+		$myTax = $term->slug;
+		$color_field = get_field('acf_color_picker', $term );
+		?>
+		.<?php echo $myTax;?>{background:<?php echo $color_field;?>}
+		<?php
+	}
+	echo '</style>';
+
+
+}
+add_action( 'wp_head', 'retrieveTaxAndColor', 0 );
+
