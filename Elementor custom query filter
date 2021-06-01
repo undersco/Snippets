@@ -27,3 +27,47 @@ add_action( 'elementor/query/sort_by_acf_value', function( $query ) {
 	
 });
 
+//Sort by taxonomy and exclude post by acf relationship value
+add_action( 'elementor/query/filter_by_tax', function( $query ) {
+	
+	$id = get_queried_object_id();
+	$tax = get_the_terms( $id, 'my_custom_taxonomy');
+	$myAcfExclusion = get_post_meta( $id, 'my_acf_value', true );
+	
+	$tax_query = array(
+		array(
+			'taxonomy' => 'my_custom_taxonomy',
+			'field' => 'slug',
+			'terms' => $tax[0]->slug,
+		),
+	);
+	
+	$query->set( 'tax_query', $tax_query );
+	$query->set( 'not__post__in', $myAcfExclusion );
+	
+	$query->set( 'posts_per_page', 4);
+	
+});
+
+//Retrieve post by acf relationship (one only)
+add_action( 'elementor/query/my_filter', function( $query ) {
+
+	$postid = get_the_ID();
+	$getAcfPost = get_post_meta( $postid, 'my_acf_value', true );
+
+	$query->set( 'p', $getAcfPost[0]);
+
+});
+
+//Retrieve acf relationShip post and keep selected order
+add_action( 'elementor/query/my_filter', function( $query ) {
+
+	$postid = get_the_ID();
+	$getAcfProducts = get_post_meta( $postid, 'my_acf_relationship', true );
+
+	$query->set( 'post__in', $getAcfProducts);
+	
+	// Renvoie l'ordre spécifié
+	$query->set( 'orderby', 'post__in');
+
+});
