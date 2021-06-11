@@ -22,8 +22,9 @@ $query->set( 'meta_query', array(
 
 add_action( 'elementor/query/sort_by_acf_value', function( $query ) {
 	
-	$query->set( 'meta_key', 'my_acf_name' );
-	$query->set( 'meta_value', 1 ); // replace 1 by the value needed
+	$query->set( 'meta_key', 'my_acf_value' );
+	$query->set( 'orderby', 'meta_value_num' );
+	$query->set( 'order', 'ASC' );
 	
 });
 
