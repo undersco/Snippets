@@ -18,6 +18,11 @@ $query->set( 'meta_query', array(
 
 });
 
+//Sort by taxonomy (pass an array instead of a single id for multiple taxonomies)
+add_action( 'elementor/query/trade_fair', function( $query ) {
+	$query->set( 'category__in', 217 );
+});
+
 //Sort by acf field Value
 
 add_action( 'elementor/query/sort_by_acf_value', function( $query ) {
