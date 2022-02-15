@@ -70,6 +70,10 @@ add_action( 'elementor/query/my_filter', function( $query ) {
 
 	$postid = get_the_ID();
 	$getAcfProducts = get_post_meta( $postid, 'my_acf_relationship', true );
+	
+	if($getAcfProducts === "") {
+		return ;
+	}
 
 	$query->set( 'post__in', $getAcfProducts);
 	
