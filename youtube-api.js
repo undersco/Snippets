@@ -30,7 +30,7 @@ function init(){
             height: '390',
             width: '640',
             videoId: videoID,
-            playerVars: { 'autoplay': 1, 'controls': 0, 'autohide': 1, 'wmode': 'opaque', 'origin': 'https://dev.lapignata.fr/' },
+            playerVars: { 'autoplay': 1, 'controls': 0, 'autohide': 1, 'wmode': 'opaque', 'origin': 'https://domainName.com' },
             // events: {
             //     'onReady': onPlayerReady
             // }
