@@ -1,3 +1,7 @@
+/**
+ * Créer une modale et inserer <div id="player"></div> dedans
+ * Crer un bouton et passer en attribut l'url de la video : data-yt-src="lien de ma video yt" + une classe spécifique pour buttonsYT
+ */
 document.addEventListener('DOMContentLoaded',init)
 
 function init(){
