@@ -1,3 +1,4 @@
+<?php
 function client_scripts() {
 	if(!is_admin() || is_page(751)){ //pour ne pas appliquer les styles et charger inutilement du style dans le BO
 	//Ajout des JS (appelés dans le footer)
@@ -21,3 +22,5 @@ function client_scripts() {
 
 }
 add_action('wp_enqueue_scripts', 'client_scripts', 101);
+
+?>

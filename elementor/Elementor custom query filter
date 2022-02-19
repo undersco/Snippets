@@ -1,3 +1,4 @@
+<?php
 //Sort by acf field Date
 
 add_action( 'elementor/query/sort_by_acf_date', function( $query ) {
@@ -81,3 +82,5 @@ add_action( 'elementor/query/my_filter', function( $query ) {
 	$query->set( 'orderby', 'post__in');
 
 });
+
+?>

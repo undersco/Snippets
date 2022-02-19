@@ -1,11 +1,14 @@
-Loop with custom taxonomy as param -> based on
-https://wordpress.stackexchange.com/questions/232873/create-a-shortcode-to-display-custom-post-types-with-a-specific-taxonomy
+<?php
+
+//Loop with custom taxonomy as param -> based on
+//https://wordpress.stackexchange.com/questions/232873/create-a-shortcode-to-display-custom-post-types-with-a-specific-taxonomy
 
 /**
  * Register all shortcodes
  *
  * @return null
  */
+
 function register_shortcodes() {
     add_shortcode( 'lwct', 'loop_with_tax' );
 }
@@ -90,3 +93,5 @@ dead simple loop
     }
 
     add_shortcode('dsl', 'dead_simple_loop');
+
+?>
