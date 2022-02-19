@@ -1,3 +1,4 @@
+<?php
 // Get Field value in CPT_2 linked via a relationship field in CPT_1 single.
 
 function get_field_in_CPT_2(){
@@ -113,3 +114,4 @@ function retrieveTaxAndColor(){
 }
 add_action( 'wp_head', 'retrieveTaxAndColor', 0 );
 
+?>
