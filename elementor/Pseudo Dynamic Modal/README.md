@@ -34,4 +34,6 @@ Enqueue the JS file
 wp_enqueue_script( 'youtube-api', plugin_dir_url( __FILE__ ) . 'assets/js/youtube-api.js', '', '1.0.0', true );
 ```
 
+Edit the domaine name to match yours in playerVars
+
 In your loop create a button and add this class js_activite-modal-video and add [setVideoField] as dynamic shortcode attribute
