@@ -14,7 +14,7 @@ Add this to your functions.php or plugin file
 /**
  * getVideoField :
  * 
- * Loop Anniversaires -> activités --> détail
+ * Loop ECS
  * 
  * @return le champs acf video de l'activité en tant qu'attribut (pour les boutons) * 
  */
