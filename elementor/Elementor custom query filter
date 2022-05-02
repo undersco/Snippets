@@ -75,6 +75,9 @@ add_action( 'elementor/query/my_filter', function( $query ) {
 	if($getAcfProducts === "") {
 		return ;
 	}
+	
+	//Important : define post type!!!
+	$query->set( 'post_type', 'page');
 
 	$query->set( 'post__in', $getAcfProducts);
 	
