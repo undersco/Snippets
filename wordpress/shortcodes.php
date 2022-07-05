@@ -85,7 +85,10 @@ dead simple loop
             </a>
         </div>
 
-        <?php endwhile; ?>
+        <?php 
+            endwhile;
+            wp_reset_postdata();
+        ?>
         </div>
     <?php
     
